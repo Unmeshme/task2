@@ -15,13 +15,15 @@ const STYLE_CHANGE_MIN_INTERVAL: float = 3.0
 const STYLE_CHANGE_MAX_INTERVAL: float = 6.0
 
 
+#one of these is overshooting lol idk which one
 const TWEEN_STYLES: Array = [
 	[Tween.TRANS_LINEAR, Tween.EASE_IN_OUT],
 	[Tween.TRANS_SINE, Tween.EASE_IN_OUT],
-	[Tween.TRANS_QUAD, Tween.EASE_OUT],
+	#[Tween.TRANS_QUAD, Tween.EASE_OUT],
 	[Tween.TRANS_CIRC, Tween.EASE_IN_OUT],
 	[Tween.TRANS_CUBIC, Tween.EASE_OUT],
 ]
+
 
 var position_tween: Tween
 var scale_tween: Tween
@@ -238,12 +240,13 @@ func _change_direction() -> void:
 
 	if m_hit_side and m_hit_top_or_bottom:
 		rotation = PI + rotation
+		
 	elif m_hit_side:
 		rotation = -rotation
+		
 	else:
 		rotation = PI - rotation
-
-	rotation += rand_range(-PI / 16.0, PI / 16.0)
+	rotation = wrapf(rotation, PI, -PI)
 	move()
 
 
