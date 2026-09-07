@@ -32,6 +32,11 @@ var boost_timer: Timer
 var style_timer: Timer
 var is_hovered: bool = false
 
+
+func _process(p_delta: float) -> void:
+	pass #adding to differentiate it from the main branch to be able to create a pull request
+
+
 func _ready() -> void:
 	position_tween = Tween.new()
 	scale_tween = Tween.new()
